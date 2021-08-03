@@ -1,0 +1,9 @@
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+// <ng-select id="role"  multiple="true" formControlName="role" [ngClass]="{
+//     'is-invalid': submitted && f.role.errors
+//   }">
+//     <ng-option *ngFor="let data of roleGroupData" [value]="data.name">{{
+//       data.name
+//       }}</ng-option>
+//   </ng-select>

@@ -1,0 +1,34 @@
+<!--
+* Copyright (c) 2020 Vyasaka Technologies. All Rights Reserved.
+-->
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i><strong>Company Apps</strong>
+                </div>
+                <div class="card-body">                   
+                    <div class="row">
+                        <div class="col-12">
+                            <angular-slickgrid 
+                            gridId="grid20" 
+                            gridWidth="1000" 
+                            [columnDefinitions]="columnDefinitions"
+                                [gridOptions]="gridOptions"
+                                 [dataset]="dataset"
+                                (sgOnValidationError)="onValidationError($event.detail.eventData, $event.detail.args)"
+                                (onAngularGridCreated)="angularGridReady($event)"
+                                (sgOnCellChange)="onCellChanged($event.detail.eventData, $event.detail.args)"
+                                (sgOnActiveCellChanged)="onActiveCellChanged($event.detail.eventData, $event.detail.args)"
+                                >
+                            </angular-slickgrid>
+                        </div>
+                    </div>
+                </div>             
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,211 @@
+
+  <div class="card">
+    <div class="card-header">
+      <i class="fa fa-align-justify"></i><strong>Team List</strong>
+      <span class="float-right">
+        <i
+          class="fa fa-refresh"
+          aria-hidden="true"
+          (click)="refreshPage()"
+          data-toggle="tooltip"
+          title="Refresh"
+          style="cursor: pointer;"
+        ></i>
+        <i
+          class="fa fa-plus"
+          aria-hidden="true"
+          title="Add Form"
+          [routerLink]="['/team/team-add']"
+        ></i>
+        <div class="btn-group master" dropdown>
+          <i
+            class="fa fa-snowflake-o circle-icon"
+            aria-hidden="true"
+            data-toggle="tooltip"
+            title="Apps"
+            style="cursor: pointer;"
+            id="button-split"
+            type="button"
+            dropdownToggle
+            aria-controls="dropdown-split"
+          ></i>
+          <ul
+            id="dropdown-split"
+            *dropdownMenu
+            class="dropdown-menu  dropdown-menu-right"
+            role="menu"
+            aria-labelledby="button-split"
+          >
+          <li role="menuitem" class="form-control">
+            <table>
+              <tr>
+                <td>
+                  <i
+                    class="fa fa-table"
+                    data-toggle="tooltip"
+                    title="Table"
+                  ></i>
+                </td>
+                <td class="disable">
+                  <i class="fa fa-list" data-toggle="tooltip" title="List"></i>
+                </td>
+                <td class="disable">
+                  <i class="fa fa-th" data-toggle="tooltip" title="Grid"></i>
+                </td>
+                <td class="disable">
+                  <i
+                    class="fa fa-address-card-o"
+                    data-toggle="tooltip"
+                    title="Card"
+                  ></i>
+                </td>
+                <td class="disable">
+                  <i
+                    class="fa fa-calendar"
+                    data-toggle="tooltip"
+                    title="Calendar"
+                  ></i>
+                </td>
+              </tr>
+            </table>
+          </li>
+          </ul>
+        </div>
+      </span>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <!-- Search  :: start -->
+        <div class="form-group col-sm-2 col-md-4">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fa fa-search"></i>
+              </span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              name="searchString"
+              placeholder="Search here..."
+              [(ngModel)]="searchString"
+            />
+          </div>
+        </div>
+        <!-- secrch  :: end -->
+  
+        <!-- Filter :: start -->
+        <div class="form-group col-md-4">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i
+                  class="fa fa-filter"
+                  [attr.aria-expanded]="!isCollapsed"
+                  aria-controls="collapseBasic"
+                  (click)="isCollapsed = !isCollapsed"
+                ></i>
+              </span>
+            </div>
+          </div>
+        </div>
+        <!-- Filter :: end -->
+      </div>
+  
+      <!-- Table view :: start -->
+      <div class="scroll">
+        <table
+          class="table table-bordered table-striped table-responsive-sm"
+          *ngIf="displayView === 'table'"
+        >
+          <thead>
+            <tr>
+              <th></th>
+              <th >Image</th>
+              <th >Name</th>
+              <th >Designation</th>
+              <th >Description</th>
+              <th >ProfileLink</th>             
+              
+            </tr>
+          </thead>
+          <tbody *ngIf="filterStatus === false">
+            <tr
+              *ngFor="
+                let data of allTeam
+                  | searchPipe: searchString
+                  | paginate: { itemsPerPage: paginate, currentPage: page };
+                let i = index
+              "
+            >
+            <td style="padding-top: 20px;">
+              <span>
+                <div class="btn-group master" dropdown>
+              <label class="switch switch-label switch-pill switch-primary">
+                <input type="checkbox" class="switch-input" [ngModel]="data.checked"
+                  (ngModelChange)="getSelectedId($event,data.id)" id="button-split" dropdownToggle
+                  aria-controls="dropdown-split" />
+                <span class="switch-slider" data-checked="&#x2713;" data-unchecked="&#x2715;"></span>
+              </label>
+              <div>
+                <ul id="dropdown-split" *dropdownMenu class="dropdown-menu  dropdown-menu-left" role="menu"
+                  aria-labelledby="button-split">
+                  <li role="menuitem" *ngIf="isChecked === true && id === data.id && checkedIdList.length === 1">
+                    <a class="dropdown-item"  (click)="editUser(data.id)"   style="cursor: pointer;">Edit</a>
+                  </li>
+                  <li role="menuitem" *ngIf="isChecked === true && id === data.id && checkedIdList.length === 1">
+                    <a class="dropdown-item"   [routerLink]="['/team/team-view']"   style="cursor: pointer;">View</a>
+                  </li>
+                  <li role="menuitem" *ngIf="isChecked === true && id === data.id && checkedIdList.length === 1">
+                    <a class="dropdown-item" (click)="delete(data.id)"
+                      style="cursor: pointer;">Delete</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </span>
+            </td>
+              <td><img
+                src="{{ data.image }}"
+                class="img-fluid"
+                style="width: 64px; height: 64px;"
+                alt="tbl"
+              /></td>
+              <td> {{ data.name }}</td>    
+               <td>{{ data.designation}}</td>
+              <td>{{data.description}}</td>
+              <td>{{ data.profileLink}}</td>
+              
+            </tr>
+          </tbody>
+          <tbody *ngIf="filterStatus === true">
+            <tr
+            *ngFor="
+              let data of allTeam
+                | searchPipe: searchString
+                | paginate: { itemsPerPage: paginate, currentPage: page };
+              let i = index
+            "
+          >
+          <td><img
+            src="{{ data.image }}"
+            class="img-fluid"
+            style="width: 64px; height: 64px;"
+            alt="tbl"
+          /></td>
+          <td> {{ data.name }}</td>    
+           <td>{{ data.designation}}</td>
+          <td>{{data.description}}</td>
+          <td>{{ data.profileLink}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <!-- Table view :: end -->
+  
+      <!-- Card view :: end -->
+      <div class="pull-right">
+        <pagination-controls (pageChange)="page = $event"></pagination-controls>
+      </div>
+    </div>

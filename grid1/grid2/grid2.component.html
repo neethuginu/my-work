@@ -1,0 +1,38 @@
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i><strong> Grid</strong>
+                    <i class="fa fa-arrow-circle-left pull-right" [routerLink]="['/team/team-list']" title="Back"></i>
+                </div>
+                <!-- body -->
+                <div class="card-body">              
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <button class="btn btn-outline-secondary btn-sm" (click)="setFrozenColumns2(-1)"
+                                data-test="remove-frozen-column-button">
+                                <i class="fa fa-times fa-lg"></i> Remove Frozen Columns
+                            </button>
+                            <button class="btn btn-outline-secondary btn-sm" (click)="setFrozenColumns2(2)"
+                                data-test="set-3frozen-columns">
+                                <i class="fa fa-thumb-tack fa-lg"></i> Set 3 Frozen Columns
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">                        
+                        <angular-slickgrid 
+                            gridId="grid2" 
+                            [columnDefinitions]="columnDefinitions2"
+                            [gridOptions]="gridOptions2" 
+                            [dataset]="dataset2" 
+                            gridHeight="275" 
+                            gridWidth="800"
+                            (onAngularGridCreated)="angularGridReady2($event)">
+                        </angular-slickgrid>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

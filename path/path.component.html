@@ -1,0 +1,147 @@
+<!--
+* Copyright (c) 2020 Vyasaka Technologies. All Rights Reserved.
+-->
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i><strong>Path</strong>
+                    <i class="fa fa-arrow-circle-left pull-right" title="Back"></i>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="form" class="form-horizontal">
+                        <div class="row">
+                            <!-- Application :: start -->
+                            <div class="col-sm-12 col-md-4 col-lg-4">
+                                <div class="form-group row">
+                                    <div class="col-md-12">
+                                        <label for="">Application :</label><span class="requried-field">*</span>
+                                        <select class="form-control" formControlName="application"
+                                            placeholder="application" [ngClass]="{
+                                  'is-invalid': submitted && f.application.errors
+                                }"> >
+                                            <option *ngFor="let data of application" [value]="data.name"> {{data.name}}
+                                            </option>
+                                        </select>
+                                        <div *ngIf="submitted && f.application.errors" class="invalid-feedback">
+                                            <div *ngIf="f.application.errors.required">
+                                                Application is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Application :: end -->
+
+                                <!-- Available Application Path :: start -->
+                            </div>
+                            <!-- Available Application Path :: end -->
+
+                            <!-- Permission Acls:: start -->
+                            <div class="col-sm-12 col-md-4 col-lg-4">
+                                <div class="form-group row">
+                                    <div class="col-md-12">
+                                        <label for="">Permission Acls:</label><span class="requried-field">*</span>
+                                        <ng-select id="permissionAcls" multiple="true" formControlName="permissionAcls"
+                                            [ngClass]="{
+                                                'is-invalid': submitted && f.permissionAcls.errors
+                                                 }">
+                                            <ng-option *ngFor="let data of roleGroupData" [value]="data.name">{{
+                                                data.name
+                                                }}</ng-option>
+                                        </ng-select>
+                                        <div *ngIf="submitted && f.permissionAcls.errors" class="invalid-feedback">
+                                            <div *ngIf="f.permissionAcls.errors.required">
+                                                PermissionAcls is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- Permission Acls:: end -->
+
+                            <!-- Path Acls:: start-->
+                            <div class="col-sm-12 col-md-4 col-lg-4">
+                                <div class="form-group row">
+                                    <div class="col-md-12">
+                                        <label for="">Path Acls :</label><span class="requried-field">*</span>
+                                        <ng-select id="pathAcls" multiple="true" formControlName="pathAcls" [ngClass]="{
+                                             'is-invalid': submitted && f.pathAcls.errors
+                                              }">
+                                            <ng-option *ngFor="let data of roleGroupData" [value]="data.name">{{
+                                                data.name
+                                                }}</ng-option>
+                                        </ng-select>
+                                        <div *ngIf="submitted && f.pathAcls.errors" class="invalid-feedback">
+                                            <div *ngIf="f.pathAcls.errors.required">
+                                                PathAcls is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Path Acls:: end-->
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-8">
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <label for="">Available Application Path:</label><span
+                                            class="requried-field">*</span>
+                                        <input class="form-control" formControlName="availableAppPath"
+                                            placeholder="Available Application Path" [ngClass]="{
+                              'is-invalid': submitted && f.availableAppPath.errors
+                            }">
+                                        <div *ngIf="submitted && f.availableAppPath.errors" class="invalid-feedback">
+                                            <div *ngIf="f.availableAppPath.errors.required">
+                                                AvailableAppPath is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-4">
+                                <div class="form-group row">
+                                    <div class="col-12">
+
+                                        <div class="col">
+                                            <br>
+                                            <button class="btn btn-sm btn-primary" (click)="onSave(form.value)">
+                                                Add
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- table :: start -->
+                    <div class="row">
+                        <div class="col-12">
+                            <angular-slickgrid gridId="grid20" gridWidth="1050" [columnDefinitions]="columnDefinitions"
+                                [gridOptions]="gridOptions" [dataset]="dataset"
+                                (sgOnValidationError)="onValidationError($event.detail.eventData, $event.detail.args)"
+                                (onAngularGridCreated)="angularGridReady($event)"
+                                (sgOnCellChange)="onCellChanged($event.detail.eventData, $event.detail.args)"
+                                (sgOnActiveCellChanged)="onActiveCellChanged($event.detail.eventData, $event.detail.args)">
+                            </angular-slickgrid>
+                        </div>
+                    </div>
+                    <!-- table :: end -->
+                </div>
+                <div class="card-footer ">
+                    <div class="pull-right">
+                        <button class="btn btn-sm btn-primary" (click)="onSubmit()">
+                            save
+                        </button>
+                        <button class="btn btn-sm btn-danger" type="reset">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,125 @@
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i><strong>Team</strong>
+                    <i class="fa fa-arrow-circle-left pull-right" [routerLink]="['/team/team-list']"
+                        title="Back"></i>
+                </div>
+                <form [formGroup]="teamForm" class="form-horizontal">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-4 col-lg-4">
+                                <div class="form-group row">
+                                    <div class="col-md-12">
+                                        <label>Image:</label><span class="requried-field">*</span>
+                                        <button class="btn btn-sm btn-primary">
+                                            <input type="file" (change)="fileChangeEvent($event)" />
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- IMAGE -->
+                                <div class="form-group row">
+                                    <div class="col-md-12">
+                                        <image-cropper [imageChangedEvent]="imageChangedEvent" format="png"
+                                            (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()"
+                                            (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()">
+                                        </image-cropper>
+                                        <img [src]="croppedImage" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-12">
+                                        <button btn-btn-succes>Upload</button>
+                                    </div>
+                                </div>
+                                <!-- IMAGE -->
+                            </div>
+                            <div class="col-sm-12 col-md-4 col-lg-4">
+                                <div class="form-group row">
+                                    <div class="col-md-12">
+                                        <label for="">Name :</label><span class="requried-field">*</span>
+                                        <input class="form-control" formControlName="name" placeholder="Name" [ngClass]="{
+                                          'is-invalid': submitted && f.name.errors
+                                        }">
+                                        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                            <div *ngIf="f.name.errors.required">
+                                                Name is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-12">
+                                        <label for="">Profile Link:</label><span class="requried-field">*</span>
+                                        <select class="form-control filter">
+                                            <option value="">--Select--</option>
+                                            <option *ngFor="let profile of profileLin"> {{profile}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-12">
+                                        <input class="form-control" formControlName="profileLink"
+                                            placeholder="Profile Link" [ngClass]="{
+                                          'is-invalid': submitted && f.profileLink.errors
+                                        }">
+                                        <div *ngIf="submitted && f.profileLink.errors" class="invalid-feedback">
+                                            <div *ngIf="f.profileLink.errors.required">
+                                                Profile Link is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-4 col-lg-4">
+                                <div class="form-group row">
+                                    <div class="col-md-12">
+                                        <label for="">Designation :</label><span class="requried-field">*</span>
+                                        <input class="form-control" formControlName="designation"
+                                            placeholder="Designation" [ngClass]="{
+                                          'is-invalid': submitted && f. designation.errors
+                                        }">
+                                        <div *ngIf="submitted && f.designation.errors" class="invalid-feedback">
+                                            <div *ngIf="f.designation.errors.required">
+                                                Designation is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-12">
+                                        <label for="">Description :</label><span class="requried-field">*</span>
+                                        <textarea type="textarea" class="form-control" formControlName="description"
+                                            placeholder="Description" [ngClass]="{
+                                          'is-invalid': submitted && f.description.errors
+                                        }"></textarea>
+                                        <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                                            <div *ngIf="f.description.errors.required">
+                                                Description is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+                <div class="card-footer ">
+                    <div class="pull-right">
+                        <button class="btn btn-sm btn-primary" (click)="onSubmit(teamForm.value)">
+                            Save
+                        </button>
+                        <button class="btn btn-sm btn-danger" type="reset">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

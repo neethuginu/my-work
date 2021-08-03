@@ -1,0 +1,28 @@
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i><strong> Grid</strong>
+                    <i class="fa fa-arrow-circle-left pull-right" [routerLink]="['/team/team-list']" title="Back"></i>
+                </div>
+                <!-- body -->
+                <div class="card-body">
+                    <div class="row mb-1">
+                        <div class="col-sm-12">
+                            <angular-slickgrid 
+                            gridId="grid1"
+                             [columnDefinitions]="columnDefinitions1"
+                            [gridOptions]="gridOptions1" 
+                            [dataset]="dataset1" 
+                            gridHeight="275" 
+                            gridWidth="800"
+                            (onAngularGridCreated)="angularGridReady2($event)">                            >
+                            </angular-slickgrid>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

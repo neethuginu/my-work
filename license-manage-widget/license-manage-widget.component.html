@@ -1,0 +1,75 @@
+<!--
+* Copyright (c) 2020 Vyasaka Technologies. All Rights Reserved.
+-->
+
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-3 col-lg-3">
+                <div class="card">
+                    <div class="card-body p-3 clearfix">
+                        <i class="fa fa-calendar-check-o bg-primary p-3 font-2xl mr-3 float-left"></i>
+                        <div class="h5 text-primary mb-0 mt-2">
+                            {{ platformExpiry }}
+                        </div>
+                        <div class="text-muted text-uppercase font-weight-bold font-xs">
+                            Platform Expiry
+                        </div>
+                    </div>
+                    <div class="card-footer px-3 py-2">
+                        <a class="font-weight-bold font-xs btn-block text-muted" href="#">View More <i
+                                class="fa fa-angle-right float-right font-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3 col-lg-3">
+                <div class="card">
+                    <div class="card-body p-3 clearfix">
+                        <i class="fa fa-money bg-primary p-3 font-2xl mr-3 float-left"></i>
+                        <div class="h5 text-primary mb-0 mt-2">{{ lastRenew }}</div>
+                        <div class="text-muted text-uppercase font-weight-bold font-xs">
+                            Last Renewed
+                        </div>
+                    </div>
+                    <div class="card-footer px-3 py-2">
+                        <a class="font-weight-bold font-xs btn-block text-muted" href="#">View More <i
+                                class="fa fa-angle-right float-right font-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3 col-lg-3">
+                <div class="card">
+                    <div class="card-body p-3 clearfix">
+                        <i class="fa fa-money bg-primary p-3 font-2xl mr-3 float-left"></i>
+                        <div class="h5 text-primary mb-0 mt-2">{{ totalApplication }}</div>
+                        <div class="text-muted text-uppercase font-weight-bold font-xs">
+                            Total Applications
+                        </div>
+                    </div>
+                    <div class="card-footer px-3 py-2">
+                        <a class="font-weight-bold font-xs btn-block text-muted" href="#">View More <i
+                                class="fa fa-angle-right float-right font-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3 col-lg-3">
+                <div class="card">
+                    <div class="card-body p-3 clearfix">
+                        <i class="fa fa-users bg-primary p-3 font-2xl mr-3 float-left"></i>
+                        <div class="h5 text-primary mb-0 mt-2">
+                            {{ activeUser }}
+                        </div>
+                        <div class="text-muted text-uppercase font-weight-bold font-xs">
+                            Active Users
+                        </div>
+                    </div>
+                    <div class="card-footer px-3 py-2">
+                        <a class="font-weight-bold font-xs btn-block text-muted" href="#">View More <i
+                                class="fa fa-angle-right float-right font-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <app-company-apps></app-company-apps>
+    </div>
+</div>
